@@ -121,5 +121,3 @@ while True:
     # Escolha da opção 5
     elif entrada == 5:
         break
-# Fazer sisteminha para cadastrar novo cao WHILE
-# Fazer para imprimir as informacoes de um cao
