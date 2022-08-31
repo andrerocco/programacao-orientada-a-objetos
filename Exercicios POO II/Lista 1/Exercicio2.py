@@ -7,6 +7,7 @@ class Livro:
         self.edicao = edicao
         self.volume = volume
     
+    # Setters
     def set_titulo(self, titulo):
         self.titulo = titulo
     def set_autor(self, autor):
@@ -20,6 +21,7 @@ class Livro:
     def set_volume(self, volume):
         self.volume = volume
 
+    # Getters
     def get_titulo(self):
         return self.titulo
     def get_autor(self):
