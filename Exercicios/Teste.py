@@ -1,1 +1,2 @@
-multiplo = 0.83 // 0.2
+contador, i = 0
+contador, i += 1
