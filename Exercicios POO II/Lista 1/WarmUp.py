@@ -73,7 +73,7 @@ print("População de PE: {}".format(pernambuco.populacao))
 
 
 #8
-from math import sqrt, degrees, atan2
+from math import sqrt, degrees, atan2, pi
 
 class Coordenada:
     def __init__(self, x, y):
@@ -108,3 +108,64 @@ coord2 = Coordenada(480, 230)
 print(coord1.calcular_distancia(coord2.x, coord2.y))
 coord1.comparar_coordenadas(coord2)
 print(coord1.calcular_coordenada_polar())
+
+
+#9
+class Quadrado:
+    def __init__(self, lado):
+        self.lado = lado
+        self.area = lado*lado
+
+class Retangulo:
+    def __init__(self, lado1, lado2):
+        self.x = lado1
+        self.y = lado2
+        self.area = lado1*lado2
+
+class Circulo:
+    def __init__(self, raio):
+        self.raio = raio
+        self.area = pi*raio*raio
+
+
+#10
+class Fracao:
+    def __init__(self, numerador, denominador):
+        self.numerador = numerador
+        self.denominador = denominador
+    
+    def soma(self, fracao):
+        denominador_resultado = self.denominador * fracao.denominador
+        numerador_resultado = (self.denominador/denominador_resultado)*self.numerador + (fracao.denominador/denominador_resultado)*fracao.numerador
+
+        return (numerador_resultado, denominador_resultado)
+    
+    def subtracao(self, fracao):
+        ...
+    
+    def multiplicacao(self, fracao):
+        numerador_resultado = self.numerador * fracao.numerador
+        denominador_resultado = self.denominador * fracao.denominador
+
+        return (numerador_resultado, denominador_resultado)
+    
+    def divisao(self, fracao):
+        numerador_resultado = self.numerador * fracao.denominador
+        denominador_resultado = self.denominador * fracao.numerador
+
+        return (numerador_resultado, denominador_resultado)
+    
+    def inverter_fracao(self):
+        self.numerador ,self.denominador = self.denominador, self.numerador
+    
+    def valor_float(self):
+        valor = self.numerador / self.denominador
+        
+        return valor
+    
+    def real_para_fracao(self, valor_real):
+        fracao = (int(valor_real)).as_integer_ratio()
+        self.numerador = fracao[0]
+        self.denominador = fracao[1]
+
+        return fracao
