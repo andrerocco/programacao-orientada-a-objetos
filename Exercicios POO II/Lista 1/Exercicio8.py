@@ -26,7 +26,7 @@ class Forca:
             self.finalizou = True
             return False # O jogo finalizou
         
-        elif self.erros == 12: # ALTERAR O VALOR DE ERROS
+        elif self.erros == 9: # ALTERAR O VALOR DE ERROS
             self.vitoria = False
             self.finalizou = True
             return False # O jogo finalizou
@@ -39,7 +39,7 @@ class Forca:
         letra_escolhida = str(input("LETRA: ")).upper()
         # Confere se a letra está no alfabeto ou se a letra já foi escolhida
         while (letra_escolhida not in self.alfabeto) or (letra_escolhida not in self.letras_disponiveis):
-            letra_escolhida = str(input("LETRA INVÁLIDA, DIGITE NOVAMENTE: ")).upper
+            letra_escolhida = str(input("LETRA INVÁLIDA, DIGITE NOVAMENTE: ")).upper()
         self.entradas.append(letra_escolhida)
         
         # Determina o resultado da rodada
@@ -66,20 +66,101 @@ class Forca:
         return string
 
     def print_desenho_atual(self): # Imprime o desenho atual da forca baseado no número de erros
-        fases = [
-            '',
-            ''
-        ]
+        if self.erros == 0:
+            print(" +======+       ")
+            print(" |      |       ")
+            print(" |              ")
+            print(" |              ")
+            print(" |              ")
+            print(" |              ")
+            print("_|_             ")
+        elif self.erros == 1:
+            print(" +======+       ")
+            print(" |      |       ")
+            print(" |     (_)      ")
+            print(" |              ")
+            print(" |              ")
+            print(" |              ")
+            print("_|_             ")
+        elif self.erros == 2:
+            print(" +======+       ")
+            print(" |      |       ")
+            print(" |     (_)      ")
+            print(" |      |       ")
+            print(" |              ")
+            print(" |              ")
+            print("_|_             ")
+        elif self.erros == 3:
+            print(" +======+       ")
+            print(" |      |       ")
+            print(" |     (_)      ")
+            print(" |     /|       ")
+            print(" |              ")
+            print(" |              ")
+            print("_|_             ")
+        elif self.erros == 4:
+            print(" +======+       ")
+            print(" |      |       ")
+            print(" |     (_)      ")
+            print(" |     /|\      ")
+            print(" |              ")
+            print(" |              ")
+            print("_|_             ")
+        elif self.erros == 5:
+            print(" +======+       ")
+            print(" |      |       ")
+            print(" |     (_)      ")
+            print(" |     /|\      ")
+            print(" |      |       ")
+            print(" |              ")
+            print("_|_             ")
+        elif self.erros == 6:
+            print(" +======+       ")
+            print(" |      |       ")
+            print(" |     (_)      ")
+            print(" |     /|\      ")
+            print(" |    ^ |       ")
+            print(" |              ")
+            print("_|_             ")
+        elif self.erros == 7:
+            print(" +======+       ")
+            print(" |      |       ")
+            print(" |     (_)      ")
+            print(" |     /|\      ")
+            print(" |    ^ | ^     ")
+            print(" |              ")
+            print("_|_             ")
+        elif self.erros == 8:
+            print(" +======+       ")
+            print(" |      |       ")
+            print(" |     (_)      ")
+            print(" |     /|\      ")
+            print(" |    ^ | ^     ")
+            print(" |     /        ")
+            print("_|_             ")
+        elif self.erros == 9:
+            print(" +======+       ")
+            print(" |      |       ")
+            print(" |     (_)      ")
+            print(" |     /|\      ")
+            print(" |    ^ | ^     ")
+            print(" |     / \      ")
+            print("_|_             ")
+    
+    def string_alfabeto_disponivel(self):
+        string_alfabeto = ''
+        for letra in self.alfabeto:
+            if letra in self.letras_disponiveis: # Se a letra está disponível
+                string_alfabeto += letra + ' '
+            else: # Se a letra já foi usado, será mostrada riscada
+                string_alfabeto += '- '
         
-        print()
-
+        return string_alfabeto
     
     def display(self):
-        def print_desenho_forca():
-            self.rodadas
-
         print("\nRODADA: {}".format(self.rodadas))
-        print_desenho_atual()
+        self.print_desenho_atual()
+        print(self.string_alfabeto_disponivel())
         print(self.string_parte_descoberta())
 
 
