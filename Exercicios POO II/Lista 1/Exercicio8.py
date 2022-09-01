@@ -65,14 +65,21 @@ class Forca:
         
         return string
 
-    
+    def print_desenho_atual(self): # Imprime o desenho atual da forca baseado no número de erros
+        fases = [
+            '',
+            ''
+        ]
+        
+        print()
+
     
     def display(self):
         def print_desenho_forca():
             self.rodadas
 
         print("\nRODADA: {}".format(self.rodadas))
-        #print_desenho_forca()
+        print_desenho_atual()
         print(self.string_parte_descoberta())
 
 
