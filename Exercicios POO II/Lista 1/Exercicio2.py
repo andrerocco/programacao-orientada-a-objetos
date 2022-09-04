@@ -1,4 +1,5 @@
 class Livro:
+    # Construtora
     def __init__(self, titulo, autor, ano, editora, edicao, volume):
         self.titulo = titulo
         self.autor = autor
