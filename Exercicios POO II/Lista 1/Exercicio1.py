@@ -11,8 +11,11 @@ class ContaCorrente:
         self.movimentos.append('+{}'.format(montante))
     
     def sacar(self, montante):
-        self.saldo -= montante
-        self.movimentos.append('-{}'.format(montante))
+        if montante > self.saldo:
+            print("Saldo insuficiente. O valor máximo possível de saque é $ {}".format(self.saldo))
+        else:
+            self.saldo -= montante
+            self.movimentos.append('-{}'.format(montante))
     
     def print_movimentos(self):
         for movimento in self.movimentos:
