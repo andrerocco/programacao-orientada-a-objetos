@@ -20,6 +20,12 @@ class Forca:
         # Reinicia a instância executando novamente a classe construtora
         self.__init__(palavra)
 
+    def result(self):
+        if self.vitoria == True:
+            print("Você ganhou o jogo em {} rodadas.".format(self.rodadas))
+        elif self.vitoria == False:
+            print("Você perdeu! A palavra certa era {}.".format("".join(self.palavra)))
+
     def status(self): # A função status retorna True se o jogo deve continuar e retorna False se o jogo acabou
         if '_' not in self.parte_descoberta: # Confere se o jogador ganhou o jogo
             self.vitoria = True
@@ -165,7 +171,7 @@ class Forca:
 
 
 def __main__():
-    palavra = getpass("Digite a palavra da forca [a digitação é escondida]: ")
+    palavra = getpass("\nDigite a palavra da forca [a digitação é escondida]: ")
     print(palavra)
 
     jogo = Forca(palavra)
@@ -178,4 +184,5 @@ def __main__():
     
     jogo.result()
 
-__main__()
+while True:
+    __main__()
