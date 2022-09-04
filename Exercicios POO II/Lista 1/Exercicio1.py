@@ -14,20 +14,31 @@ class ContaCorrente:
         self.saldo -= montante
         self.movimentos.append('-{}'.format(montante))
     
-    def get_saldo(self):
-        return self.saldo
-    
-    def get_movimentos(self):
+    def print_movimentos(self):
         for movimento in self.movimentos:
             print(movimento)
+        
+    def print_informacoes(self):
+        for titular in self.titular:
+            print(titular.get_nome())
+        print("Saldo: {}".format(self.saldo))
+        print("")
+    
+    # Getters
+    def get_titulares(self):
+        return self.titular
+    def get_saldo(self):
+        return self.saldo
+    def get_movimentos(self):
+        return self.movimentos
     
 class Titular:
     def __init__(self, nome, telefone):
         self.nome = nome
         self.telefone = telefone
     
+    # Getters
     def get_nome(self):
         return self.nome
-    
     def get_telefone(self):
         return self.telefone
