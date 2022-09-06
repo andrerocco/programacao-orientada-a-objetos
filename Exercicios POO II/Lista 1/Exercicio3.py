@@ -19,11 +19,22 @@ class Polinomio:
 
         return string_polinomio
     
-    def get_grau(self):
-        return self.grau
-    
     def somar_polinomio(self, outro_polinomio):
-        ...
+        lista_novos_coeficientes = []
+        for i in range(max(len( self.lista_coeficientes, len(outro_polinomio.get_lista_coeficientes()) ))):
+            lista_novos_coeficientes.append(self.lista_coeficientes[i] + self.lista_coeficientes[i])
+        
+        if len(self.lista_coeficientes) > len(outro_polinomio.get_lista_coeficientes()):
+            coeficientes_faltantes = range( len(outro_polinomio.get_lista_coeficientes())+1 , len(self.lista_coeficientes) )
+            for i in coeficientes_faltantes:
+                lista_novos_coeficientes.append(self.lista_coeficientes[i])
+
+        elif len(outro_polinomio.get_lista_coeficientes()) > len(self.lista_coeficientes):
+            coeficientes_faltantes = range( len(self.lista_coeficientes) + 1, len(outro_polinomio.get_lista_coeficientes()) )
+            for i in coeficientes_faltantes:
+                lista_novos_coeficientes.append(outro_polinomio.get_lista_coeficientes()[i])
+
+        self.__init__(lista_novos_coeficientes)
     
     def multiplicar_polinomio(self, outro_polinomio):
         ...
@@ -34,6 +45,12 @@ class Polinomio:
             resultado += coeficiente * (x**expoente) 
 
         return resultado   
+    
+    # Getters
+    def get_grau(self):
+        return self.grau
+    def get_lista_coeficientes(self):
+        return self.lista_coeficientes
 
 contador = 0
 lista_coeficientes = []
