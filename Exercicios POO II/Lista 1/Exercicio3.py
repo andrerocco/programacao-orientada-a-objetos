@@ -21,18 +21,20 @@ class Polinomio:
     
     def somar_polinomio(self, outro_polinomio):
         lista_novos_coeficientes = []
-        for i in range(max(len( self.lista_coeficientes, len(outro_polinomio.get_lista_coeficientes()) ))):
-            lista_novos_coeficientes.append(self.lista_coeficientes[i] + self.lista_coeficientes[i])
+        p2_coeficientes = outro_polinomio.get_lista_coeficientes()
+
+        for i in range(min( len(self.lista_coeficientes) , len(p2_coeficientes ))):
+            lista_novos_coeficientes.append(self.lista_coeficientes[i] + p2_coeficientes[i])
         
-        if len(self.lista_coeficientes) > len(outro_polinomio.get_lista_coeficientes()):
-            coeficientes_faltantes = range( len(outro_polinomio.get_lista_coeficientes())+1 , len(self.lista_coeficientes) )
+        if len(self.lista_coeficientes) > len(p2_coeficientes):
+            coeficientes_faltantes = list( range( len(p2_coeficientes) , len(self.lista_coeficientes) ) )
             for i in coeficientes_faltantes:
                 lista_novos_coeficientes.append(self.lista_coeficientes[i])
 
-        elif len(outro_polinomio.get_lista_coeficientes()) > len(self.lista_coeficientes):
-            coeficientes_faltantes = range( len(self.lista_coeficientes) + 1, len(outro_polinomio.get_lista_coeficientes()) )
+        elif len(p2_coeficientes) > len(self.lista_coeficientes):
+            coeficientes_faltantes = list( range( len(self.lista_coeficientes), len(p2_coeficientes) ) )
             for i in coeficientes_faltantes:
-                lista_novos_coeficientes.append(outro_polinomio.get_lista_coeficientes()[i])
+                lista_novos_coeficientes.append(p2_coeficientes[i])
 
         self.__init__(lista_novos_coeficientes)
     
@@ -55,7 +57,7 @@ class Polinomio:
 contador = 0
 lista_coeficientes = []
 
-print("Digite os coeficientes do polinômio. Digite 'P' para parar.")
+print("\nDigite os coeficientes do polinômio. Digite 'P' para parar.")
 while True:
     coeficiente = str(input("Coeficiente de x^{}: ".format(contador)))
     if coeficiente.upper() == 'P':
@@ -72,3 +74,8 @@ p1 = Polinomio(lista_coeficientes)
 print(p1.string_polinomio())
 print(p1.get_grau())
 print(p1.avaliar_resultado(4))
+
+p2 = Polinomio([1.0, 1.0, 1.0])
+
+p1.somar_polinomio(p2)
+print(p1.string_polinomio())
