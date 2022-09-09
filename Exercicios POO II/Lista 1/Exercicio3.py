@@ -39,7 +39,20 @@ class Polinomio:
         self.__init__(lista_novos_coeficientes)
     
     def multiplicar_polinomio(self, outro_polinomio):
-        ...
+        resultado = []
+        # Preenche a lista resultado com a quantidade de zeros equivalente ao grau do polinômio resultante
+        grau = len(self.lista_coeficientes) + len(outro_polinomio.get_lista_coeficientes())
+        for i in range(grau):
+            resultado.append(0)
+        
+        for expoente_a, coeficiente_a in enumerate(self.lista_coeficientes):
+            for expoente_b, coeficiente_b in enumerate(self.lista_coeficientes):
+                expoente_resultante = expoente_a + expoente_b
+                coeficiente_resultante = coeficiente_a * coeficiente_b
+                resultado[expoente_resultante] += coeficiente_resultante
+        
+        return resultado
+
     
     def avaliar_resultado(self, x):
         resultado = 0
