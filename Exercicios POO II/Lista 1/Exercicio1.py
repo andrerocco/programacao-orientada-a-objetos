@@ -1,5 +1,3 @@
-from datetime import date
-
 class ContaCorrente:
     def __init__(self, titulares):
         self.titular = [] # Pode conter um ou mais titulares
