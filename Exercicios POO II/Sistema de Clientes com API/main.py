@@ -13,7 +13,7 @@ try:
 except json.decoder.JSONDecodeError:
     print('Response was not a JSON string, but', url.text)
 
-
+# Bloco de criação de objetos Usuario
 for user in json_data:
     try:
         temp_user = Usuario(url, user)
