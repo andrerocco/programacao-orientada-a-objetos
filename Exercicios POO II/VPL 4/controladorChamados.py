@@ -1,10 +1,10 @@
+from distutils.log import error
 from abstractControladorChamados import AbstractControladorChamados
 from tipoChamado import TipoChamado
 from chamado import Chamado
 from datetime import date as Date
 from cliente import Cliente
 from tecnico import Tecnico
-from collections import defaultdict
 
 
 class ControladorChamados(AbstractControladorChamados):
@@ -23,20 +23,33 @@ class ControladorChamados(AbstractControladorChamados):
 	def incluiChamado(self, data: Date, cliente: Cliente, tecnico: Tecnico, titulo: str, descricao: str, prioridade: int, tipo: TipoChamado) -> Chamado:
 		for chamado in self.__chamados:
 			if chamado.data == data and chamado.cliente == cliente and chamado.tecnico == tecnico and chamado.tipo == tipo:
-				raise ValueError("Chamado duplicado já cadastrado")
+				return "Chamado duplicado já cadastrado"
 
-		return Chamado(data, cliente, tecnico, titulo, descricao, prioridade, tipo)
+		if not isinstance(data, Date):
+			return "Data inválida"
+		elif not isinstance(cliente, Cliente) or not isinstance(tecnico, Tecnico):
+			return "Cliente ou técnico inválido"
+		elif not isinstance(tipo, TipoChamado):
+			return "Tipo de chamado inválido"
+		
+		chamado = Chamado(data, cliente, tecnico, titulo, descricao, prioridade, tipo)
+		self.__chamados.append(chamado)
+		
+		return chamado
 
 	def incluiTipoChamado(self, codigo: int, nome: str, descricao: str) -> TipoChamado:
 		for tipo in self.__tipo_chamados:
 			if tipo.codigo == codigo:
-				raise ValueError("Código de chamado já cadastrado")
+				return "Código de chamado já cadastrado"
 			elif tipo.nome == nome:
-				raise ValueError("Nome de chamado já cadastrado")
+				return "Nome de chamado já cadastrado"
 			elif tipo.descricao == descricao:
-				raise ValueError("Descrição de chamado já cadastrada")
+				return "Descrição de chamado já cadastrada"
 		
-		return TipoChamado(codigo, nome, descricao)
+		tipo = TipoChamado(codigo, nome, descricao)
+		self.__tipo_chamados.append(tipo)
+		
+		return tipo
 	
 	@property	
 	def tipoChamados(self):

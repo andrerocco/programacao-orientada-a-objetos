@@ -7,7 +7,7 @@ class Cliente(Pessoa):
     
     @property
     def codigo(self) -> int:
-        return self.__codigo
+        return super().codigo
     
     @property
     def nome(self) -> str:

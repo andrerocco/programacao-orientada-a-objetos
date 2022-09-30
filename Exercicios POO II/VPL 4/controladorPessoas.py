@@ -19,14 +19,19 @@ class ControladorPessoas(AbstractControladorPessoas):
     def incluiCliente(self, codigo: int, nome: str) -> Cliente:
         for cliente in self.__clientes:
             if cliente.codigo == codigo:
-                raise ValueError("Cliente já cadastrado")
+                return "Cliente já cadastrado"
 
-        return Cliente(codigo, nome)
+        cliente = Cliente(nome, codigo)
+        self.__clientes.append(cliente)
 
+        return cliente
 
     def incluiTecnico(self, codigo: int, nome: str) -> Tecnico:
         for tecnico in self.__tecnicos:
             if tecnico.codigo == codigo:
-                raise ValueError("Técnico já cadastrado")
+                return "Técnico já cadastrado"
         
-        return Tecnico(codigo, nome)
+        tecnico = Tecnico(nome, codigo)
+        self.__tecnicos.append(tecnico)
+
+        return tecnico
