@@ -1,10 +1,12 @@
-class Transporte:
+from abc import ABC, abstractmethod
+
+class Transporte(ABC):
     def __init__(self, nome, altura, comprimento, carga, velocidade):
         self.__nome = nome
         self.__altura = altura
         self.__comprimento = comprimento
         self.__carga = carga
-        self__velocidade = velocidade
+        self.__velocidade = velocidade
 
     # Getters
     @property
@@ -26,3 +28,7 @@ class Transporte:
     @property
     def velocidade(self):
         return self.__velocidade
+
+    @abstractmethod
+    def __str__(self) -> str:
+        pass
