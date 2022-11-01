@@ -1,5 +1,6 @@
 from imposto import Imposto
 from incidencia_imposto import IncidenciaImposto
+from empresa_duplicada_exception import EmpresaDuplicadaException
 
 class Empresa:
     def __init__(self, cnpj: int, nome_de_fantasia: str):
@@ -26,6 +27,8 @@ class Empresa:
     def inclui_imposto(self, imposto: Imposto):
         if imposto not in self.__impostos:
             self.__impostos.append(imposto)
+        else:
+            raise EmpresaDuplicadaException()
 
     '''
     Exclui um imposto cadastrado
@@ -71,13 +74,13 @@ class Empresa:
 
         for imposto in self.__impostos:
             if imposto.incidencia_imposto == IncidenciaImposto.PRODUCAO:
-                total += self.__faturamento_producao * imposto.aliquota
+                total += self.__faturamento_producao * (imposto.calcula_aliquota()/100)
             elif imposto.incidencia_imposto == IncidenciaImposto.SERVICOS:
-                total += self.__faturamento_servicos * imposto.aliquota
+                total += self.__faturamento_servicos * (imposto.calcula_aliquota()/100)
             elif imposto.incidencia_imposto == IncidenciaImposto.VENDAS:
-                total += self.__faturamento_vendas * imposto.aliquota
+                total += self.__faturamento_vendas * (imposto.calcula_aliquota()/100)
             elif imposto.incidencia_imposto == IncidenciaImposto.TODOS:
-                total += self.faturamento_total() * imposto.aliquota
+                total += self.faturamento_total() * (imposto.calcula_aliquota()/100)
         
         return total
 

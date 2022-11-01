@@ -4,8 +4,8 @@ from empresa_duplicada_exception import EmpresaDuplicadaException
 
 class ControladorSistemaEmpresas():
     
-    def __init__(self, empresa_dao: EmpresaDAO):
-        self.__empresa_dao = empresa_dao
+    def __init__(self):
+        self.__empresa_dao = EmpresaDAO()
 
     '''
     Permite incluir uma empresa utilizando a EmpresaDAO. 
@@ -19,7 +19,7 @@ class ControladorSistemaEmpresas():
         try:
             self.__empresa_dao.add(empresa)
         except EmpresaDuplicadaException:
-            print('Empresa já cadastrada')
+            raise EmpresaDuplicadaException()
 
     '''
     Permite excluir uma empresa cadastrada na EmpresaDAO
@@ -28,7 +28,7 @@ class ControladorSistemaEmpresas():
     def exclui_empresa(self, empresa: Empresa):
         try:
             self.__empresa_dao.remove(empresa)
-        except ValueError:
+        except KeyError:
             print('Empresa não cadastrada')
 
     '''
@@ -40,7 +40,7 @@ class ControladorSistemaEmpresas():
     def busca_empresa_pelo_cnpj(self, cnpj: int) -> Empresa:
         try :
             return self.__empresa_dao.get(cnpj)
-        except ValueError:
+        except KeyError:
             print('Empresa não encontrada')
 
     '''
