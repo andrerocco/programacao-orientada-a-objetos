@@ -16,4 +16,3 @@ class IRPJ(Imposto):
 
     def calcula_aliquota(self):
         return self.aliquota - self.__desconto
-
