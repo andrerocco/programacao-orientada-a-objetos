@@ -1,9 +1,10 @@
 from enum import Enum
 
 '''
-Enum contendo tres tipos de incidencia de impostos: 
+Enum contendo tres tipos de incidencia de impostos:
 PRODUCAO, SERVICOS, VENDAS e TODOS
 '''
+
 
 class IncidenciaImposto(Enum):
     PRODUCAO = 1

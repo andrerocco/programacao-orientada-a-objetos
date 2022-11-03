@@ -2,13 +2,13 @@ from empresa_dao import EmpresaDAO
 from empresa import Empresa
 from empresa_duplicada_exception import EmpresaDuplicadaException
 
+
 class ControladorSistemaEmpresas():
-    
     def __init__(self):
         self.__empresa_dao = EmpresaDAO()
 
     '''
-    Permite incluir uma empresa utilizando a EmpresaDAO. 
+    Permite incluir uma empresa utilizando a EmpresaDAO.
     Valida pelo CNPJ se a empresa ja esta cadastrada
     Utiliza a EmpresaDAO para buscar as empresas
     @param empresa objeto Empresa que sera incluido
@@ -38,7 +38,7 @@ class ControladorSistemaEmpresas():
     @return retorna None se a empresa nao for encontrada
     '''
     def busca_empresa_pelo_cnpj(self, cnpj: int) -> Empresa:
-        try :
+        try:
             return self.__empresa_dao.get(cnpj)
         except KeyError:
             print('Empresa não encontrada')

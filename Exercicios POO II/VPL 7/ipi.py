@@ -9,8 +9,12 @@ Por exemplo, se a aliquota informada no construtor for 10.0
 e existe "aliquota_adicional", entao a aliquota calculada sera de 11.0.
 '''
 
+
 class IPI(Imposto):
-    def __init__(self, aliquota: float, incidencia_imposto: IncidenciaImposto, aliquota_adicional: bool):
+    def __init__(self,
+                 aliquota: float,
+                 incidencia_imposto: IncidenciaImposto,
+                 aliquota_adicional: bool):
         super().__init__(aliquota, incidencia_imposto)
         self.__aliquota_adicional = aliquota_adicional
 

@@ -9,8 +9,12 @@ Por exemplo, se a aliquota informada no construtor for 10.0
 e a "diferenca_estado" for 2, entao a aliquota calculada sera de 12.0
 '''
 
+
 class ICMS(Imposto):
-    def __init__(self, aliquota: float, incidencia_imposto: IncidenciaImposto, diferenca_estado: float):
+    def __init__(self,
+                 aliquota: float,
+                 incidencia_imposto: IncidenciaImposto,
+                 diferenca_estado: float):
         super().__init__(aliquota, incidencia_imposto)
         self.__diferenca_estado = diferenca_estado
 

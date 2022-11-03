@@ -11,6 +11,7 @@ tiverem sido incluidos 2 servicos na lista,
 entao a aliquota calculada sera de 9.8
 '''
 
+
 class ISS(Imposto):
     def __init__(self, aliquota: float, incidencia_imposto: IncidenciaImposto):
         super().__init__(aliquota, incidencia_imposto)

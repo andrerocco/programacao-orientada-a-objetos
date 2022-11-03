@@ -6,11 +6,11 @@ class Imposto(ABC):
     def __init__(self, aliquota: float, incidencia_imposto: IncidenciaImposto):
         self.__aliquota = aliquota
         self.__incidencia_imposto = incidencia_imposto
-        
+
     '''
     Operacao abstrata que ira calcular a aliquota
-    Cada classe que ira estender Imposto devera implementar o calculo de acordo 
-    com a sua regra  
+    Cada classe que ira estender Imposto devera implementar o calculo de acordo
+    com a sua regra
     '''
     @abstractmethod
     def calcula_aliquota(self) -> float:
@@ -19,7 +19,7 @@ class Imposto(ABC):
     @property
     def aliquota(self) -> float:
         return self.__aliquota
-    
+
     @property
     def incidencia_imposto(self) -> IncidenciaImposto:
         return self.__incidencia_imposto

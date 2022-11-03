@@ -9,8 +9,12 @@ Por exemplo, se a aliquota informada no construtor for 10.0
 e o "desconto" for 1, entao a aliquota calculada sera de 9.0
 '''
 
+
 class IRPJ(Imposto):
-    def __init__(self, aliquota: float, incidencia_imposto: IncidenciaImposto, desconto: float):
+    def __init__(self,
+                 aliquota: float,
+                 incidencia_imposto: IncidenciaImposto,
+                 desconto: float):
         super().__init__(aliquota, incidencia_imposto)
         self.__desconto = desconto
 
