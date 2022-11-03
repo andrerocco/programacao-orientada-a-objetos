@@ -26,10 +26,8 @@ class Empresa:
     @param imposto imposto a ser incluido
     '''
     def inclui_imposto(self, imposto: Imposto):
-        if imposto not in self.__impostos:
+        if imposto not in self.__impostos and isinstance(imposto, Imposto):
             self.__impostos.append(imposto)
-        else:
-            print("Imposto já cadastrado")
 
     '''
     Exclui um imposto cadastrado
@@ -77,20 +75,16 @@ class Empresa:
     def total_impostos(self) -> float:
         total = 0
 
-        fat_producao = self.__faturamento_producao
-        fat_servicos = self.__faturamento_servicos
-        fat_vendas = self.__faturamento_vendas
-        fat_total = self.faturamento_total()
-
         for imposto in self.__impostos:
-            if imposto.incidencia_imposto == IncidenciaImposto.PRODUCAO:
-                total += fat_producao * (imposto.calcula_aliquota() / 100)
-            elif imposto.incidencia_imposto == IncidenciaImposto.SERVICOS:
-                total += fat_servicos * (imposto.calcula_aliquota() / 100)
-            elif imposto.incidencia_imposto == IncidenciaImposto.VENDAS:
-                total += fat_vendas * (imposto.calcula_aliquota() / 100)
-            elif imposto.incidencia_imposto == IncidenciaImposto.TODOS:
-                total += fat_total * (imposto.calcula_aliquota() / 100)
+            aliquota = imposto.calcula_aliquota() / 100
+            if imposto.incidencia_imposto == IncidenciaImposto(1):
+                total += self.__faturamento_producao * (aliquota)
+            elif imposto.incidencia_imposto == IncidenciaImposto(2):
+                total += self.__faturamento_servicos * (aliquota)
+            elif imposto.incidencia_imposto == IncidenciaImposto(3):
+                total += self.__faturamento_vendas * (aliquota)
+            else:
+                total += self.faturamento_total() * (aliquota)
 
         return total
 
