@@ -16,7 +16,7 @@ class EmpresaDAO:
         pickle.dump(self.__object_cache, open(self.__datasource, 'wb'))
 
     def __load(self):
-        pickle.load(open(self.__datasource, 'rb'))
+        self.__object_cache = pickle.load(open(self.__datasource, 'rb'))
 
     def add(self, empresa: Empresa):
         if empresa.cnpj in self.__object_cache.keys():
